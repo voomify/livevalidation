@@ -41,7 +41,9 @@ module ActionView
       end
 
       def initialize_validator(field_name)
-        "var #{field_name} = new LiveValidation('#{field_name}');"
+        validator = "var #{field_name} = new LiveValidation('#{field_name}'"
+        validator  << ",#{LiveValidationsConfig.options}" if LiveValidationsConfig.options
+        validator  << ");"
       end
 
       def live_validation_code(field_name, type, configuration)
